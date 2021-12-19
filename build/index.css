@@ -238,6 +238,10 @@ input[type="number"] {
     width: 80%;
 }
 
+#final_result_header button {
+    width: 25%;
+}
+
 #final_result_text_cntnr_btns {
     height: 100%;
     margin: 0 auto;
@@ -276,6 +280,7 @@ input[type="number"] {
     body {
         font-size: .8em;
     }
+
     #check_7shifts .icon {
         max-width: 40px;
         max-height: 40px;

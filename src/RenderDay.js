@@ -16,5 +16,7 @@ export default function renderDay(day) {
         return 'Friday'
     } else if (day == 6) {
         return 'Saturday'
-    }
+    } else if (day == 7) {
+        return 'Crafted'
+}
 }

@@ -8,6 +8,7 @@ import getDay from './getDay'
 import renderDay from './RenderDay'
 
 export default function App() {
+
     
     const [loading, setLoading] = React.useState(true)
     const [inventory, setInventory] = React.useState(renderList(getDay()))
@@ -21,11 +22,14 @@ export default function App() {
 
     const handleChange = (e) => {
         e.preventDefault()
-        let val = e.target
         setInventory(renderList(e.target.value))
         setDay(renderDay(e.target.value))
         setShowSelect(!showSelect)
     }
+
+    // add options to select by vendor
+    // add additional day values in renderList for individuals
+    // example : renderList(7) => return crafted
     
     const selectOptions = () => {
         let options = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -40,23 +44,22 @@ export default function App() {
     
     return (   
         <>
-                <img src="https://i.pinimg.com/originals/2b/4b/e9/2b4be96bc38970073bbdf0f5b5ce5d5d.gif" id="bg_gif" / >
-            
-                <div id="cntnr">
-                    <div id="header">
-                        <img src={a} id="logo" />
-                        
-                        {loading ? '' : <><select onChange={handleChange}>{selectOptions()}</select></>}
-                        
-                        {showSelect ? <p>Today's inventory already loaded. Are you sure you want to change the day?</p> : ''}
-                    </div>
+                    <img src="https://i.pinimg.com/originals/2b/4b/e9/2b4be96bc38970073bbdf0f5b5ce5d5d.gif" id="bg_gif" / >
+                
+                    <div id="cntnr">
+                        <div id="header">
+                            <img src={a} id="logo" />
+                            {loading ? '' : <><select onChange={handleChange}>{selectOptions()}</select></>}
+                        </div>
 
-                    
-                    {loading ? <Loading /> : <>
-                    <h3 id="subheader">{day} Inventory Numbers</h3>
-                    {inventory.length <= 0 ? <NoNums /> : <Form inventory={inventory} select />}
-                    </>}
-                </div>
+                        
+                        {loading ? <Loading /> : <>
+                        <h3 id="subheader">{day} Inventory Numbers</h3>
+                        {inventory.length <= 0 ? <NoNums /> : <Form inventory={inventory} select />}
+                        {/* <h1>Morning Numbers</h1>
+                        <Form inventory={renderList(7)} select / > */}
+                        </>}
+                    </div>
         </>
     )
 }

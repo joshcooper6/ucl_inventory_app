@@ -1,16 +1,18 @@
-import React, {useRef} from 'react'
+import React, { useRef } from 'react'
 import renderList from './RenderList.js'
 import OpenApp from 'react-open-app'
 import TypedElement2 from './typedElement2.js'
 
 import { BrowserRouter as Router, Redirect } from 'react-router-dom'
 
+
 export default function Form({inventory}) {
-    
-    const [formData, updateFormData] = React.useState();
+
+    const [formData, updateFormData] = React.useState([])
     const [totals, setTotals] = React.useState([]);
     
     const handleChange = (e) => {
+        e.preventDefault();
          updateFormData({
             ...formData,
             [e.target.name]: e.target.value
@@ -25,15 +27,17 @@ export default function Form({inventory}) {
             }
             return nums
         }
-        
-        return <div key={item.id} className="input_cntnr">
+
+        return <><div key={item.id} className="input_cntnr">
             <select
                 key={item.id} 
-                name={item.name} 
+                name={item.name}
+                onClick={handleChange} 
                 onChange={handleChange}
             >{selectOptions()}</select>
-            <label>{item.name}</label>
+            <label for={item.name}>{item.name}</label>
         </div>
+        </>
     })
     
    const [displayResults, setDisplayResults] = React.useState(false);
@@ -61,6 +65,8 @@ export default function Form({inventory}) {
             textAreaRef.current.select();
             document.execCommand('copy');
             setCopySuccess('Copied!')
+            textAreaRef.current.focus();
+            document.execCommand('copy');
         }
         
         React.useEffect(() => {
@@ -87,11 +93,11 @@ export default function Form({inventory}) {
         return (
             <>
                 <div id="final_result_header">
-                    <h1>Numbers {copySuccess}</h1> 
+                    <button onClick={copyToClipboard}>Copy Today's Numbers</button>
                     <img src="https://media0.giphy.com/media/MZXmFVrbMA1qSDNGOt/giphy.gif" className="icon" />
-                    <OpenApp href="https://app.7shifts.com/log_book">
+                    <a href="https://app.7shifts.com/log_book" target="_blank">
                         <img src="https://www.7shifts.com/images/media-kit-2018/orange-icon.png" className="icon"/>
-                    </OpenApp><br />
+                    </a><br />
                 </div>
                 
                 <div id="final_result_text_cntnr">
@@ -103,7 +109,7 @@ export default function Form({inventory}) {
                     /><br />
                     
                     <div id="final_result_text_cntnr_btns">
-                        <button onClick={copyToClipboard}>Copy Today's Numbers</button>
+                        {/* render a button that clears the form */}
                         <button onClick={handleClick}>Go back to form</button>
                         <p>NOTE: Your current results & any following changes will automatically be saved. </p>
                     </div>
