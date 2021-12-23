@@ -17,8 +17,8 @@ const firebaseConfig = {
     measurementId: "G-78FG6NL59J"
   };
 
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const perf = getPerformance(app);
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const perf = getPerformance(app);
 
 ReactDOM.render(<Router><App /></Router>, root)

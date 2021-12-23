@@ -1,7 +1,8 @@
-import React from 'react'
-import getDay from './getDay'
+export default function renderDay() {
+    let date = new Date()
+    let day = date.getDay()
+    let time = date.getHours()
 
-export default function renderDay(day) {
     if (day == 0) {
         return 'Sunday'
     } else if (day == 1) {
@@ -16,7 +17,5 @@ export default function renderDay(day) {
         return 'Friday'
     } else if (day == 6) {
         return 'Saturday'
-    } else if (day == 7) {
-        return 'Crafted'
-}
+    } 
 }

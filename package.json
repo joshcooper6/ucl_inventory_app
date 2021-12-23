@@ -10,6 +10,7 @@
     "react-new-window": "0.2.1",
     "react-open-app": "1.0.3",
     "react-router-dom": "5.3.0",
+    "styled-components": "^5.3.3",
     "typed.js": "2.0.12"
   },
   "devDependencies": {
